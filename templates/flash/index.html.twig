@@ -6,7 +6,15 @@
 {% block body %}
 	{% include 'home/_navbar.html.twig' %}
 	<h1 class="neonText" id="flash-index">Flash</h1>
-
+{% for category, messages in app.flashes %}
+    {% for message in messages %}
+    <div class="card-container d-flex flex-column">
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        </div>
+    {% endfor %}
+{% endfor %}
 	<div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
 		{% for flash in flashes %}
 
