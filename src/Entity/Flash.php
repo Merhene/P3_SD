@@ -42,6 +42,9 @@ class Flash
     #[ORM\Column]
     private ?bool $available = null;
 
+    #[ORM\ManyToOne(inversedBy: 'flash')]
+    private ?Size $size = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -117,6 +120,18 @@ class Flash
     public function setUpdatedAt(DatetimeInterface $updatedAt): Flash
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    public function getSize(): ?Size
+    {
+        return $this->size;
+    }
+
+    public function setSize(?Size $size): static
+    {
+        $this->size = $size;
+
         return $this;
     }
 }

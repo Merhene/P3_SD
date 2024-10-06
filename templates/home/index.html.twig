@@ -5,22 +5,25 @@
 {% block body_class %}specific-style
 {% endblock %}
 {% block body %}
-	<nav aria-label="Main navigation"><!-- Ceci n'est pas du code mort mais un outils ! -->
+	<div aria-label="Main navigation"><!-- Ceci n'est pas du code mort mais un outils ! -->
 		{# <div class="scroll-watcher"></div> #}
-	</nav>
+	</div>
 	<header class="header-scroll">
 		<div id="home-wallpaper">
 			<img id="home-wallpaper" src="{{ asset('build/images/tattoingStan.png') }}" alt="Stan's picture taking out a stencil">
 		</div>
 		<div class="header-content">
 			<img src="{{ asset('build/images/white_logo.png') }}" alt="Logo de Stan Dottori">
+
+            <h1 class="neonText" id="ring">ring if you dare</h1>
+
 			<a href="#menu" aria-label="Scroll down to biography">
-				<i class="fa-solid fa-angles-down"></i>
+				<img src="{{ asset('build/images/counterFrogg.png') }}" class="frog"></img>
 			</a>
 		</div>
 	</header>
-	<main>
-		{% block menu %}
+	<nav class="home">
+		{% block nav %}
 			<section id="menu" class="link-container">
 				<h2 class="neonText" id="home-title">Welcome
 				</h2>
@@ -36,11 +39,9 @@
 				<div class="link" id="guest">
 					<a href="{{path('app_guest_index') }}">Guest</a>
 				</div>
-				<div class="link">Youtube</div>
-				<div class="link">Contact</div>
 			</section>
 		{% endblock %}
-	</main>
+	</nav>
 	{% block javascript %}
 		<script>
 			document.addEventListener('DOMContentLoaded', (event) => {

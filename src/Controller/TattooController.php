@@ -34,6 +34,8 @@ class TattooController extends AbstractController
             $entityManager->persist($tattoo);
             $entityManager->flush();
 
+            $this->addFlash('success', 'A new flash has been upload');
+
             return $this->redirectToRoute('app_tattoo_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,6 +79,8 @@ class TattooController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $tattoo->getId(), $request->request->get('_token'))) {
             $entityManager->remove($tattoo);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'A Moody has been deleted');
         }
 
         return $this->redirectToRoute('app_tattoo_index', [], Response::HTTP_SEE_OTHER);

@@ -5,17 +5,27 @@
 
 {% block body %}
 	{% include 'home/_navbar.html.twig' %}
-	<div class="card">
-		<a href="{{ path('app_flash_show', {'id': flash.id}) }}"><img src="{{ vich_uploader_asset(flash) }}" class="card-img-top" alt="{{ flash.id }}"></a>
+	<div class="card-show">
+		<img src="{{ vich_uploader_asset(flash) }}" class="card-img-top" alt="{{ flash.id }}">
 		<div class="card-body">
 			<h5 class="card-title">Flash name</h5>
 			<p class="card-text">Description</p>
 		</div>
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item">{{ flash.realisationTime ? flash.realisationTime|date('H:i') : '' }}</li>
-			<li class="list-group-item">{{ flash.price }}€</li>
-			<li class="list-group-item">{{ flash.available ? 'Yes' : 'No' }}</li>
-		</ul>
+        <div class="col">
+						<p class="card-text">
+							<h6>Time needed:
+								{{ flash.realisationTime ? flash.realisationTime|date('H:i') : '' }}</h6>
+							<h6>Price:
+								{{ flash.price }}€</h6>
+							<h6>Available :
+								{{ flash.available ? 'Yes' : 'No' }}</h6>
+						</p>
 	</div>
-	<a href="{{ path('app_flash_index') }}">back to list</a>
+    </div>
+    <br>
+	<button type="button" class="btn btn-outline-secondary"><a href="{{ path('app_flash_index') }}">back</a></button>
+    	{% if is_granted('ROLE_ADMIN') %}
+		<button type="button" class="btn btn-outline-warning"><a href="{{ path('app_flash_edit', {'id': flash.id}) }}">edit</a></button>
+		{{ include('flash/_delete_form.html.twig') }}
+	{% endif %}
 {% endblock %}

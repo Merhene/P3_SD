@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Flash;
+use App\Entity\Size;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,6 +18,11 @@ class FlashType extends AbstractType
             ->add('realisationTime')
             ->add('price')
             ->add('available')
+            ->add('size', EntityType::class, [
+                'class' => Size::class,
+                'choice_label' => 'type',
+                'placeholder' => 'Choose a size',
+            ])
             ->add('posterFile', VichFileType::class, [
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true

@@ -49,6 +49,8 @@ class FlashController extends AbstractController
 
             $entityManager->flush();
 
+            $this->addFlash('success', 'A new flash has been upload');
+
             return $this->redirectToRoute('app_flash_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -92,6 +94,8 @@ class FlashController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $flash->getId(), $request->request->get('_token'))) {
             $entityManager->remove($flash);
             $entityManager->flush();
+
+            $this->addFlash('danger', 'A flash has been deleted');
         }
 
         return $this->redirectToRoute('app_flash_index', [], Response::HTTP_SEE_OTHER);
